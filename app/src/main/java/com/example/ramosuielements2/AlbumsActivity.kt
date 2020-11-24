@@ -33,7 +33,6 @@ class AlbumsActivity : AppCompatActivity() {
             var intent = Intent(this, AlbumDetailsActivity::class.java)
             intent.putExtra("data",modalList[i])
             startActivity(intent);
-
         }
     }
 
