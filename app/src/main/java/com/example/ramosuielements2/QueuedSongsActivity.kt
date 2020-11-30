@@ -29,6 +29,7 @@ class QueuedSongsActivity : AppCompatActivity() {
     private val description = "Empty Queue Notification"
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

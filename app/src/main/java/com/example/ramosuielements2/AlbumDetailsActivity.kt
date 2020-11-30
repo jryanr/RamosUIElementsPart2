@@ -25,10 +25,7 @@ import java.lang.StringBuilder
 class AlbumDetailsActivity : AppCompatActivity() {
     var albumSongsArray: ArrayList<String> = ArrayList()
     lateinit var adapter: ArrayAdapter<String>
-
-
-
-
+    lateinit var holder2: ArrayList<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +34,8 @@ class AlbumDetailsActivity : AppCompatActivity() {
 
         var modalItems: Modal = intent.getSerializableExtra("data") as Modal;
 
+
+
         Log.e("name", modalItems.name.toString());
         val viewName = findViewById<TextView>(R.id.viewName)
         val viewImage = findViewById<ImageView>(R.id.viewImage)
@@ -44,28 +43,39 @@ class AlbumDetailsActivity : AppCompatActivity() {
         var holder: Array<String> = arrayOf()
 
         viewName.text = modalItems.name;
-        var songsArray: Array<String> = arrayOf()
-        if (modalItems.name.equals("image1")) {
-            viewName.text = "Franco"
+        /*var songsArray: Array<String> = arrayOf()*/
+        if (modalItems.name.equals("Franco")) {
             holder  = arrayOf("Better Days", "Castaway", "Manipulator",
                     "Aurora Sunrise", "Song for The Suspect", "A Beautiful Diversion",
                     "This Gathering", "To Survive", "Memory Kill",
                     "Lost In Your Universe", "For My Dearly Departed", "Mondaze",
             )
+
+
             for (string in holder){
                 albumSongsArray.add(string)
             }
-        } else if (modalItems.name.equals("image2")) {
+            holder2 = intent.getStringArrayListExtra("francoList") as ArrayList<String>
+            for (string in holder2!!){
+                albumSongsArray.add(string)
+            }
+        } else if (modalItems.name.equals("Linkin Park")) {
             viewName.text = "Linkin Park"
             holder = arrayOf("In the End", "Numb", "What I've Done",
                     "One Step Closer", "Burn It Down", "Crawling",
                     "Bleed it Out", "One More Light", "Papercut",
                     "With You", "Points of Authority", "By Myself"
             )
+
             for (string in holder){
                 albumSongsArray.add(string)
             }
-        } else if (modalItems.name.equals("image3")) {
+
+            holder2 = intent.getStringArrayListExtra("lpList") as ArrayList<String>
+            for (string in holder2!!){
+                albumSongsArray.add(string)
+            }
+        } else if (modalItems.name.equals("Fall Out Boy")) {
             viewName.text = "Fall Out Boy"
             holder = arrayOf("Grand Theft Autumn", "Thnks fr The Mmrs", "Sugar, We're Goin Down",
                     "Centuries", "Summer Days", "Dance, Dance",
@@ -75,6 +85,21 @@ class AlbumDetailsActivity : AppCompatActivity() {
             for (string in holder){
                 albumSongsArray.add(string)
             }
+
+            holder2 = intent.getStringArrayListExtra("fobList") as ArrayList<String>
+            for (string in holder2!!){
+                albumSongsArray.add(string)
+            }
+        } else if (modalItems.name.equals("First Album")) {
+            holder2 = intent.getStringArrayListExtra("firstList") as ArrayList<String>
+            for (string in holder2!!){
+                albumSongsArray.add(string)
+            }
+        } else if (modalItems.name.equals("Second Album")) {
+            holder2 = intent.getStringArrayListExtra("secondList") as ArrayList<String>
+            for (string in holder2!!){
+                albumSongsArray.add(string)
+            }
         }
 
         viewImage.setImageResource(modalItems.image!!);
@@ -82,10 +107,7 @@ class AlbumDetailsActivity : AppCompatActivity() {
         val songs_list: ListView = findViewById<ListView>(R.id.songs_list)
 
         songs_list.adapter = adapter
-
         registerForContextMenu(songs_list)
-
-
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -125,6 +147,7 @@ class AlbumDetailsActivity : AppCompatActivity() {
             else -> super.onContextItemSelected(item)
         }
     }
+
 
 }
 
